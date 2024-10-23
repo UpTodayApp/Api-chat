@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\chatController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/chat/enviar', [chatController::class, 'enviarMensaje']);
+Route::get('/chat/obtener', [chatController::class, 'obtenerMensajes']);
+Route::put('/chat/{id}/visto', [chatController::class, 'marcarComoVisto']);

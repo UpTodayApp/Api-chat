@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat</title>
+</head>
+<body>
+    <div id="chat">
+    
+    </div>
+    <input type="text" id="mensaje">
+    <button onclick="enviarMensaje()">Enviar</button>
+
+    <script>
+        function enviarMensaje() {
+            const mensaje = document.getElementById('mensaje').value;
+
+            fetch('http://localhost:8000/api/chat/enviar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    // agrega el token de autenticación franquito <3
+                body: JSON.stringify({ contenido: mensaje })
+            }})
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+            });
+        }
+        function obtenerMensajes() {
+        }
+        setInterval(obtenerMensajes, 5000); 
+    </script>
+</body>
+</html>
